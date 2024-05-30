@@ -1,0 +1,27 @@
+{
+  "name": "@dewars/paseto",
+  "version": "1.0.0",
+  "description": "PASETO v4 (encrypt, decrypt, sign & verify)",
+  "exports": {
+    ".": "./mod.ts",
+    "./v4": "./lib/v4/mod.ts"
+  },
+  "imports": {
+    "@stablelib/blake2b": "npm:@stablelib/blake2b@^1.0.1",
+    "@stablelib/ed25519": "npm:@stablelib/ed25519@^1.0.3",
+    "@stablelib/xchacha20": "npm:@stablelib/xchacha20@^1.0.1",
+    "@std/expect": "jsr:@std/expect@^0.224.3"
+  },
+  "publish": {
+    "exclude": [
+      ".github",
+      ".vscode",
+      "tests"
+    ]
+  },
+  "test": {
+    "include": [
+      "test/**/*.spec.ts"
+    ]
+  }
+}
