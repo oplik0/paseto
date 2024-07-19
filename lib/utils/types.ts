@@ -8,7 +8,7 @@ export type PasetoPurpose = "local" | "public";
  */
 export type Assertion =
   | {
-    [key: string]: any;
+    [key: string]: object | string;
   }
   | string
   | Uint8Array;
@@ -17,7 +17,7 @@ export type Assertion =
  * Paseto payload
  */
 export type Payload = {
-  [key: string]: any;
+  [key: string]: string | undefined;
   iss?: string;
   sub?: string;
   aud?: string;
@@ -31,7 +31,7 @@ export type Payload = {
  * Paseto footer
  */
 export type Footer = {
-  [key: string]: any;
+  [key: string]: string | undefined;
   kid?: string;
   wpk?: string;
 };

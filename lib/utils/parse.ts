@@ -5,7 +5,7 @@ import {
   KEY_MAGIC_BYTES,
   KEY_MAGIC_STRINGS,
 } from "./magic.ts";
-import { Assertion, Footer, Payload } from "./types.ts";
+import type { Assertion, Footer, Payload } from "./types.ts";
 import {
   PasetoClaimInvalid,
   PasetoKeyInvalid,
@@ -23,9 +23,8 @@ import {
   isObject,
   validateFooterClaims,
   validateISODate,
-  validateToken,
 } from "./validate.ts";
-import { parseTime, parseTimeString } from "./time.ts";
+import { parseTime } from "./time.ts";
 
 import { assertJsonStringSize } from "./json.ts";
 import { base64UrlDecode } from "./base64url.ts";
@@ -49,7 +48,7 @@ export function parseKeyData(
   // Assert that the key and purpose are valid
   if (!purpose || !key) throw new TypeError("Purpose and key are required.");
 
-  if (typeof key !== "string" && (key as any) instanceof Uint8Array === false) {
+  if (typeof key !== "string" && key instanceof Uint8Array === false) {
     throw new PasetoKeyInvalid(
       `Invalid key data. Key data must be a string or Uint8Array and start with the UTF-8 string '${magicString}' for this purpose (${purpose}). Received: ${typeof key}.`,
     );
@@ -243,7 +242,7 @@ export function parsePayload(payload: string | Payload | Uint8Array, {
         maxKeys,
       });
       obj = JSON.parse(possibleStringPayload);
-    } catch (e) {
+    } catch (_err) {
       throw new PasetoPayloadInvalid("Payload must be valid JSON");
     }
   } else if (isObject(payload)) {
@@ -251,8 +250,8 @@ export function parsePayload(payload: string | Payload | Uint8Array, {
   }
 
   // Validate the "iss" claim
-  if (obj.hasOwnProperty("iss") && validate) {
-    const iss = (obj as any).iss;
+  if (Object.hasOwn(obj, "iss") && validate) {
+    const iss = obj.iss;
     if (typeof iss !== "string") {
       throw new PasetoClaimInvalid(
         'Payload must have a valid "iss" claim (is not a string)',
@@ -261,8 +260,8 @@ export function parsePayload(payload: string | Payload | Uint8Array, {
   }
 
   // Validate the "sub" claim
-  if (obj.hasOwnProperty("sub") && validate) {
-    const sub = (obj as any).sub;
+  if (Object.hasOwn(obj, "sub") && validate) {
+    const sub = obj.sub;
     if (typeof sub !== "string") {
       throw new PasetoClaimInvalid(
         'Payload must have a valid "sub" claim (is not a string)',
@@ -271,8 +270,8 @@ export function parsePayload(payload: string | Payload | Uint8Array, {
   }
 
   // Validate the "aud" claim
-  if (obj.hasOwnProperty("aud") && validate) {
-    const aud = (obj as any).aud;
+  if (Object.hasOwn(obj, "aud") && validate) {
+    const aud = obj.aud;
     if (typeof aud !== "string") {
       throw new PasetoClaimInvalid(
         'Payload must have a valid "aud" claim (is not a string)',
@@ -290,10 +289,10 @@ export function parsePayload(payload: string | Payload | Uint8Array, {
   const now = Date.now();
 
   // Validate the "iat" claim
-  if (obj.hasOwnProperty("iat") && validate) {
+  if (Object.hasOwn(obj, "iat") && validate) {
     // Validate the existing "iat" claim.
     // Don't allow passing in a relative time string (e.g. "1 hour")
-    const iat = (obj as any).iat;
+    const iat = obj.iat;
     if (!validateISODate(iat)) {
       throw new PasetoClaimInvalid(
         'Payload must have a valid "iat" claim (is not an ISO date)',
@@ -308,21 +307,21 @@ export function parsePayload(payload: string | Payload | Uint8Array, {
     }
   } else if (addIat) {
     // If the "iat" claim is not present, create it if requested
-    (obj as any).iat = new Date().toISOString();
+    obj.iat = new Date().toISOString();
   }
 
   // Validate the "exp" claim
-  if (obj.hasOwnProperty("exp") && validate) {
-    let exp = (obj as any).exp;
+  if (Object.hasOwn(obj, "exp") && validate) {
+    let exp = obj.exp;
     try {
       exp = parseTime(exp);
-    } catch (err) {
+    } catch (_err) {
       throw new PasetoClaimInvalid(
         'Payload must have a valid "exp" claim (is not an date or a valid relative time string (e.g. "1 hour"))',
       );
     }
     // The "exp" claim must be greater than the "iat" claim
-    if (obj.hasOwnProperty("iat") && exp <= Date.parse((obj as any).iat)) {
+    if (Object.hasOwn(obj, "iat") && exp <= Date.parse(obj.iat)) {
       throw new PasetoClaimInvalid(
         'Payload must have a valid "exp" claim (is not greater than "iat")',
       );
@@ -334,26 +333,26 @@ export function parsePayload(payload: string | Payload | Uint8Array, {
       );
     }
     // If the "exp" claim is not a valid ISO date, convert it to one
-    if (!validateISODate((obj as any).exp)) {
+    if (!validateISODate(obj.exp)) {
       obj.exp = new Date(exp).toISOString();
     }
   } else if (addExp) {
     // If the "exp" claim is not present, create it with one hour of leeway
-    (obj as any).exp = new Date(now + 3600000).toISOString();
+    obj.exp = new Date(now + 3600000).toISOString();
   }
 
   // Validate the "nbf" claim
-  if (obj.hasOwnProperty("nbf") && validate) {
-    let nbf = (obj as any).nbf;
+  if (Object.hasOwn(obj, "nbf") && validate) {
+    let nbf = obj.nbf;
     try {
       nbf = parseTime(nbf);
-    } catch (err) {
+    } catch (_err) {
       throw new PasetoClaimInvalid(
         'Payload must have a valid "nbf" claim (is not an date or a valid relative time string (e.g. "1 hour"))',
       );
     }
     // The "nbf" claim must be greater than the "iat" claim
-    if (obj.hasOwnProperty("iat") && nbf < Date.parse((obj as any).iat)) {
+    if (Object.hasOwn(obj, "iat") && nbf < Date.parse(obj.iat)) {
       throw new PasetoClaimInvalid(
         'Payload must have a valid "nbf" claim (is not greater than "iat")',
       );
@@ -365,14 +364,14 @@ export function parsePayload(payload: string | Payload | Uint8Array, {
       );
     }
     // If the "nbf" claim is not a valid ISO date, convert it to one
-    if (!validateISODate((obj as any).nbf)) {
+    if (!validateISODate(obj.nbf)) {
       obj.nbf = new Date(nbf).toISOString();
     }
   }
 
   // Validate the "jti" claim
-  if (obj.hasOwnProperty("jti") && validate) {
-    const jti = (obj as any).jti;
+  if (Object.hasOwn(obj, "jti") && validate) {
+    const jti = obj.jti;
     if (typeof jti !== "string") {
       throw new PasetoClaimInvalid(
         'Payload must have a valid "jti" claim (is not a string)',
@@ -410,7 +409,7 @@ export function parseFooter(
     }
     return stringToUint8Array(footer);
   } else if (isObject(footer)) {
-    if (validate) validateFooterClaims(footer);
+    if (validate) validateFooterClaims(footer as Footer);
     return stringToUint8Array(JSON.stringify(footer));
   } else if (footer instanceof Uint8Array) {
     const possibleObj = uint8ArrayToString(footer);

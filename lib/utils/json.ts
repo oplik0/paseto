@@ -109,7 +109,7 @@ export function returnPossibleJson(
   }
   try {
     return JSON.parse(json);
-  } catch (e) {
+  } catch (_err) {
     return json;
   }
 }

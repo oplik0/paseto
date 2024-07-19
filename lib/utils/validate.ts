@@ -6,7 +6,7 @@ import { TOKEN_MAGIC_BYTES, TOKEN_MAGIC_STRINGS } from "./magic.ts";
  * @param val The payload to validate.
  * @returns If the payload is valid.
  */
-export function isObject(val: any): boolean {
+export function isObject(val: unknown): boolean {
   return !!val && val.constructor == Object;
 }
 
@@ -49,10 +49,10 @@ export function validateISODate(date: string): boolean {
  * Validate the footer claims.
  * @param obj The footer object to validate.
  */
-export function validateFooterClaims(obj: Record<string, any>) {
+export function validateFooterClaims(obj: Record<string, unknown>) {
   // Validate the "kid" claim
-  if (obj.hasOwnProperty("kid")) {
-    const kid = (obj as any).kid;
+  if (Object.hasOwn(obj, "kid")) {
+    const kid = obj.kid;
     if (typeof kid !== "string") {
       throw new PasetoClaimInvalid(
         'Footer must have a valid "kid" claim (is not a string)',
@@ -60,8 +60,8 @@ export function validateFooterClaims(obj: Record<string, any>) {
     }
   }
   // Validate the "wpk" claim
-  if (obj.hasOwnProperty("wpk")) {
-    const wpk = (obj as any).wpk;
+  if (Object.hasOwn(obj, "wpk")) {
+    const wpk = obj.wpk;
     if (typeof wpk !== "string") {
       throw new PasetoClaimInvalid(
         'Footer must have a valid "wpk" claim (is not a string)',

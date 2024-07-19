@@ -7,7 +7,7 @@ import { concat } from "./uint8array.ts";
  * @see https://github.com/paseto-standard/paseto-spec/blob/master/docs/01-Protocol-Versions/Common.md#pae-definition
  */
 export function LE64(n: number): Uint8Array {
-  let arr = new Uint8Array(8);
+  const arr = new Uint8Array(8);
 
   // Iterate over each byte
   for (let i = 0; i < 8; ++i) {
@@ -34,7 +34,7 @@ export function LE64(n: number): Uint8Array {
  */
 export function PAE(...pieces: Uint8Array[]): Uint8Array {
   // Get the number of pieces
-  let count = pieces.length;
+  const count = pieces.length;
 
   // Prepend the number of pieces to the output
   let output = concat(LE64(count));

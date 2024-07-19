@@ -34,7 +34,7 @@ import { xchacha20 } from "@noble/ciphers/chacha";
  * @see https://github.com/paseto-standard/paseto-spec/blob/master/docs/01-Protocol-Versions/Version4.md#decrypt
  */
 export function decrypt<
-  T extends { [key: string]: any } = { [key: string]: any },
+  T extends { [key: string]: unknown } = { [key: string]: unknown },
 >(
   key: string | Uint8Array,
   token: string | Uint8Array,
@@ -115,6 +115,6 @@ export function decrypt<
       addIat: false,
       validate: !!validatePayload,
     }) as Payload & T,
-    footer: returnPossibleJson(footer),
+    footer: returnPossibleJson(footer) as Record<string, string>,
   };
 }

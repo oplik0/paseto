@@ -17,6 +17,9 @@
   "publish": {
     "exclude": [".github", ".vscode", "tests"]
   },
+  "lint": {
+    "exclude": ["test"]
+  },
   "test": {
     "include": ["test/**/*.spec.ts"]
   }

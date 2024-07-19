@@ -14,7 +14,7 @@ import {
 
 import { PAE } from "../utils/pae.ts";
 import { PasetoSignatureInvalid } from "../utils/errors.ts";
-import { ed25519Verify as ed25519Verify } from "../utils/ed25519.ts";
+import { ed25519Verify } from "../utils/ed25519.ts";
 import { returnPossibleJson } from "../utils/json.ts";
 import { uint8ArrayToString } from "../utils/uint8array.ts";
 import { validateToken } from "../utils/validate.ts";
@@ -32,7 +32,7 @@ import { validateToken } from "../utils/validate.ts";
  * @see https://github.com/paseto-standard/paseto-spec/blob/master/docs/01-Protocol-Versions/Version4.md#verify
  */
 export function verify<
-  T extends { [key: string]: any } = { [key: string]: any },
+  T extends { [key: string]: unknown } = { [key: string]: unknown },
 >(
   key: string | Uint8Array,
   token: string | Uint8Array,
@@ -102,6 +102,6 @@ export function verify<
       maxKeys,
       validate: !!validatePayload,
     }) as Payload & T,
-    footer: returnPossibleJson(footer),
+    footer: returnPossibleJson(footer) as Record<string, string>,
   };
 }

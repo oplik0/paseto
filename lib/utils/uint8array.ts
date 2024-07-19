@@ -60,7 +60,7 @@ export function payloadToUint8Array(
       // Assume that by this point the input string has been validated and is safe to parse
       JSON.parse(input);
       return stringToUint8Array(input);
-    } catch (e) {
+    } catch (_err) {
       throw new PasetoInvalid(
         "Invalid payload. Payload must be a JSON string, object, or Uint8Array.",
       );

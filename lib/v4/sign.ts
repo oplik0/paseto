@@ -15,9 +15,7 @@ import {
 
 import { PAE } from "../utils/pae.ts";
 import { base64UrlEncode } from "../utils/base64url.ts";
-import { ed25519Sign as ed25519Sign } from "../utils/ed25519.ts";
-
-const EMPTY_BUFFER = new Uint8Array(0);
+import { ed25519Sign } from "../utils/ed25519.ts";
 
 /**
  * Signs a payload using an Ed25519 secret key and returns a PASETO v4.public token.

@@ -88,7 +88,7 @@ export function parseTime(time: string | number | Date): Date {
     if (isNaN(parsedDate)) {
       try {
         return parseTimeString(time);
-      } catch (e) {
+      } catch (_err) {
         throw new TypeError("Invalid date string");
       }
     }
