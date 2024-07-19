@@ -87,7 +87,7 @@ prepend the magic bytes yourself.
 You can generate a local key in PASERK format using the `generateKeys` function:
 
 ```ts
-import { generateKeys } from "@dewars/paseto/v4";
+import { generateKeys } from "@opliko/paseto/v4";
 
 const localKey = generateKeys("local");
 // localKey: k4.local.xxx..
@@ -97,7 +97,7 @@ If you need the key as a buffer, you can pass in `buffer` as the second
 argument:
 
 ```ts
-import { generateKeys } from "@dewars/paseto/v4";
+import { generateKeys } from "@opliko/paseto/v4";
 
 const localKeyBuffer = generateKeys("local", { format: "buffer" });
 // localKeyBuffer: Uint8Array(41)
@@ -106,7 +106,7 @@ const localKeyBuffer = generateKeys("local", { format: "buffer" });
 ### Encrypt a payload
 
 ```ts
-import { encrypt } from "@dewars/paseto/v4";
+import { encrypt } from "@opliko/paseto/v4";
 
 try {
   const token = await encrypt(
@@ -141,7 +141,7 @@ try {
 ### Decrypt a token
 
 ```ts
-import { decrypt } from "@dewars/paseto/v4";
+import { decrypt } from "@opliko/paseto/v4";
 
 try {
   // generic type parameter is optional but will give you type safety on the payload
@@ -200,7 +200,7 @@ You can generate a public/secret key pair in PASERK format using the
 `generateKeys` function:
 
 ```ts
-import { generateKeys } from "@dewars/paseto/v4";
+import { generateKeys } from "@opliko/paseto/v4";
 
 const { secretKey, publicKey } = generateKeys("public");
 // secretKey: k4.secret.xxx..
@@ -211,7 +211,7 @@ If you need the keys as buffers, you can pass in `buffer` as the second
 argument:
 
 ```ts
-import { generateKeys } from "@dewars/paseto/v4";
+import { generateKeys } from "@opliko/paseto/v4";
 
 const { secretKey, publicKey } = generateKeys("public", { format: "buffer" });
 // secretKey: Uint8Array(41)
@@ -226,7 +226,7 @@ function. PASETO defines a set of
 that you can use in your payload. Any registered claims are validated.
 
 ```ts
-import { sign } from "@dewars/paseto/v4";
+import { sign } from "@opliko/paseto/v4";
 
 try {
   const token = await sign(
@@ -261,7 +261,7 @@ try {
 ### Verify a token
 
 ```ts
-import { verify } from "@dewars/paseto/v4";
+import { verify } from "@opliko/paseto/v4";
 
 try {
   // generic type parameter is optional but will give you type safety on the payload
