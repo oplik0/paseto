@@ -5,8 +5,8 @@ import { concat } from "./uint8array.ts";
  * Private (secret) and public key pair
  */
 export interface KeyPair {
-    secretKey: Uint8Array;
-    publicKey: Uint8Array;
+  secretKey: Uint8Array;
+  publicKey: Uint8Array;
 }
 
 /**
@@ -17,13 +17,13 @@ export interface KeyPair {
  * @returns {KeyPair} A new key pair
  */
 export function generateKeyPair(): KeyPair {
-    const privateKey = ed25519.utils.randomPrivateKey();
-    const publicKey = ed25519.getPublicKey(privateKey);
-    const secretKey = concat(privateKey, publicKey);
-    return {
-        secretKey,
-        publicKey,
-    };
+  const privateKey = ed25519.utils.randomPrivateKey();
+  const publicKey = ed25519.getPublicKey(privateKey);
+  const secretKey = concat(privateKey, publicKey);
+  return {
+    secretKey,
+    publicKey,
+  };
 }
 /**
  * Signs a message using the Ed25519 algorithm
@@ -32,12 +32,13 @@ export function generateKeyPair(): KeyPair {
  * @returns
  */
 export const ed25519Sign: typeof ed25519.sign = (
-    message,
-    privateKey,
-) => ed25519.sign(
+  message,
+  privateKey,
+) =>
+  ed25519.sign(
     message,
     privateKey.slice(0, 32),
-);
+  );
 /**
  * Verifies a message using the Ed25519 algorithm
  * @param signature
@@ -45,7 +46,7 @@ export const ed25519Sign: typeof ed25519.sign = (
  * @param publicKey
  */
 export const ed25519Verify: typeof ed25519.verify = (
-    signature,
-    message,
-    publicKey,
+  signature,
+  message,
+  publicKey,
 ) => ed25519.verify(signature, message, publicKey);
