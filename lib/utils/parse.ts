@@ -29,7 +29,7 @@ import { parseTime, parseTimeString } from "./time.ts";
 
 import { assertJsonStringSize } from "./json.ts";
 import { base64UrlDecode } from "./base64url.ts";
-import { hash } from "@stablelib/blake2b";
+import { blake2b } from "@noble/hashes/blake2b";
 
 /**
  * Parses a key and ensures it is a valid key for the given type
@@ -459,10 +459,10 @@ export function deriveEncryptionAndAuthKeys(
   counterNonce: Uint8Array;
   authKey: Uint8Array;
 } {
-  const keyedHash = hash(concat(KEY_BYTES, nonce), 56, { key });
+  const keyedHash = blake2b(concat(KEY_BYTES, nonce), { key, dkLen: 56 });
   const encryptionKey = keyedHash.slice(0, 32);
   const counterNonce = keyedHash.slice(32);
-  const authKey = hash(concat(AUTH_BYTES, nonce), 32, { key });
+  const authKey = blake2b(concat(AUTH_BYTES, nonce), { key, dkLen: 32 });
 
   return {
     encryptionKey,

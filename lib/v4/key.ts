@@ -2,8 +2,7 @@ import { PasetoFormatInvalid, PasetoPurposeInvalid } from "../utils/errors.ts";
 import { concat, stringToUint8Array } from "../utils/uint8array.ts";
 
 import { base64UrlEncode } from "../utils/base64url.ts";
-import { generateKeyPair } from "@stablelib/ed25519";
-
+import { generateKeyPair } from "../utils/ed25519.ts";
 /**
  * Public key pair with secret key and public key as strings
  */

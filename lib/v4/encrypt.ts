@@ -15,9 +15,9 @@ import {
 
 import { PAE } from "../utils/pae.ts";
 import { base64UrlEncode } from "../utils/base64url.ts";
-import { hash } from "@stablelib/blake2b";
+import { blake2b } from "@noble/hashes/blake2b";
 import { parseKeyData } from "../utils/parse.ts";
-import { streamXOR } from "@stablelib/xchacha20";
+import { xchacha20 } from "@noble/ciphers/chacha";
 
 /**
  * Encrypts a payload using a local key and returns a PASETO v4.local token
@@ -91,7 +91,7 @@ export function encrypt(
   );
 
   // Encrypt the message using XChaCha20
-  const ciphertext = streamXOR(
+  const ciphertext = xchacha20(
     encryptionKey,
     counterNonce,
     payloadUint8,
@@ -108,7 +108,7 @@ export function encrypt(
   );
 
   // Calculate BLAKE2b-MAC of the output of preAuth using Ak as the authentication key
-  const tag = hash(preAuth, 32, { key: authKey });
+  const tag = blake2b(preAuth, { key: authKey, dkLen: 32 });
 
   // If footer is empty, return header || base64url(nonce || ciphertext || t)
   // Otherwise, return header || base64url(nonce || ciphertext || t) || . || base64url(footer)

@@ -1,8 +1,4 @@
-import {
-  PasetoClaimInvalid,
-  PasetoPayloadInvalid,
-  PasetoTokenInvalid,
-} from "./errors.ts";
+import { PasetoClaimInvalid, PasetoTokenInvalid } from "./errors.ts";
 import { TOKEN_MAGIC_BYTES, TOKEN_MAGIC_STRINGS } from "./magic.ts";
 
 /**

@@ -2,105 +2,56 @@
   "version": "3",
   "packages": {
     "specifiers": {
-      "jsr:@std/assert@^0.225.3": "jsr:@std/assert@0.225.3",
-      "jsr:@std/expect@^0.224.3": "jsr:@std/expect@0.224.3",
-      "jsr:@std/internal@^1.0.0": "jsr:@std/internal@1.0.0",
-      "npm:@stablelib/blake2b@^1.0.1": "npm:@stablelib/blake2b@1.0.1",
-      "npm:@stablelib/ed25519@^1.0.3": "npm:@stablelib/ed25519@1.0.3",
-      "npm:@stablelib/xchacha20@^1.0.1": "npm:@stablelib/xchacha20@1.0.1"
+      "jsr:@std/assert@1.0.0-rc.2": "jsr:@std/assert@1.0.0-rc.2",
+      "jsr:@std/expect@^0.224.5": "jsr:@std/expect@0.224.5",
+      "jsr:@std/internal@^1.0.0": "jsr:@std/internal@1.0.1",
+      "npm:@noble/ciphers@0.5.3": "npm:@noble/ciphers@0.5.3",
+      "npm:@noble/curves@1.4.2": "npm:@noble/curves@1.4.2",
+      "npm:@noble/hashes@1.4.0": "npm:@noble/hashes@1.4.0"
     },
     "jsr": {
-      "@std/assert@0.225.3": {
-        "integrity": "b3c2847aecf6955b50644cdb9cf072004ea3d1998dd7579fc0acb99dbb23bd4f",
+      "@std/assert@1.0.0-rc.2": {
+        "integrity": "0484eab1d76b55fca1c3beaff485a274e67dd3b9f065edcbe70030dfc0b964d3",
         "dependencies": [
           "jsr:@std/internal@^1.0.0"
         ]
       },
-      "@std/expect@0.224.3": {
-        "integrity": "eacd71aaa426472bf04ddde7e0765b0b360d3ffa33ad2ca05a96fd7052caea41",
+      "@std/expect@0.224.5": {
+        "integrity": "ae6e57ee6f23a2fd5ae130cb84448eef182354cb902e1a2a98d64c72ac3a5a1c",
         "dependencies": [
-          "jsr:@std/assert@^0.225.3",
+          "jsr:@std/assert@1.0.0-rc.2",
           "jsr:@std/internal@^1.0.0"
         ]
       },
-      "@std/internal@1.0.0": {
-        "integrity": "ac6a6dfebf838582c4b4f61a6907374e27e05bedb6ce276e0f1608fe84e7cd9a"
+      "@std/internal@1.0.1": {
+        "integrity": "6f8c7544d06a11dd256c8d6ba54b11ed870aac6c5aeafff499892662c57673e6"
       }
     },
     "npm": {
-      "@stablelib/binary@1.0.1": {
-        "integrity": "sha512-ClJWvmL6UBM/wjkvv/7m5VP3GMr9t0osr4yVgLZsLCOz4hGN9gIAFEqnJ0TsSMAN+n840nf2cHZnA5/KFqHC7Q==",
-        "dependencies": {
-          "@stablelib/int": "@stablelib/int@1.0.1"
-        }
-      },
-      "@stablelib/blake2b@1.0.1": {
-        "integrity": "sha512-B3KyKoBAjkIFeH7romcF96i+pVFYk7K2SBQ1pZvaxV+epSBXJ+n0C66esUhyz6FF+5FbdQVm77C5fzGFcEZpKA==",
-        "dependencies": {
-          "@stablelib/binary": "@stablelib/binary@1.0.1",
-          "@stablelib/hash": "@stablelib/hash@1.0.1",
-          "@stablelib/wipe": "@stablelib/wipe@1.0.1"
-        }
-      },
-      "@stablelib/chacha@1.0.1": {
-        "integrity": "sha512-Pmlrswzr0pBzDofdFuVe1q7KdsHKhhU24e8gkEwnTGOmlC7PADzLVxGdn2PoNVBBabdg0l/IfLKg6sHAbTQugg==",
-        "dependencies": {
-          "@stablelib/binary": "@stablelib/binary@1.0.1",
-          "@stablelib/wipe": "@stablelib/wipe@1.0.1"
-        }
-      },
-      "@stablelib/ed25519@1.0.3": {
-        "integrity": "sha512-puIMWaX9QlRsbhxfDc5i+mNPMY+0TmQEskunY1rZEBPi1acBCVQAhnsk/1Hk50DGPtVsZtAWQg4NHGlVaO9Hqg==",
-        "dependencies": {
-          "@stablelib/random": "@stablelib/random@1.0.2",
-          "@stablelib/sha512": "@stablelib/sha512@1.0.1",
-          "@stablelib/wipe": "@stablelib/wipe@1.0.1"
-        }
-      },
-      "@stablelib/hash@1.0.1": {
-        "integrity": "sha512-eTPJc/stDkdtOcrNMZ6mcMK1e6yBbqRBaNW55XA1jU8w/7QdnCF0CmMmOD1m7VSkBR44PWrMHU2l6r8YEQHMgg==",
+      "@noble/ciphers@0.5.3": {
+        "integrity": "sha512-B0+6IIHiqEs3BPMT0hcRmHvEj2QHOLu+uwt+tqDDeVd0oyVzh7BPrDcPjRnV1PV/5LaknXJJQvOuRGR0zQJz+w==",
         "dependencies": {}
       },
-      "@stablelib/int@1.0.1": {
-        "integrity": "sha512-byr69X/sDtDiIjIV6m4roLVWnNNlRGzsvxw+agj8CIEazqWGOQp2dTYgQhtyVXV9wpO6WyXRQUzLV/JRNumT2w==",
+      "@noble/curves@1.4.2": {
+        "integrity": "sha512-TavHr8qycMChk8UwMld0ZDRvatedkzWfH8IiaeGCfymOP5i0hSCozz9vHOL0nkwk7HRMlFnAiKpS2jrUmSybcw==",
+        "dependencies": {
+          "@noble/hashes": "@noble/hashes@1.4.0"
+        }
+      },
+      "@noble/hashes@1.4.0": {
+        "integrity": "sha512-V1JJ1WTRUqHHrOSh597hURcMqVKVGL/ea3kv0gSnEdsEZ0/+VyPghM1lMNGc00z7CIQorSvbKpuJkxvuHbvdbg==",
         "dependencies": {}
-      },
-      "@stablelib/random@1.0.2": {
-        "integrity": "sha512-rIsE83Xpb7clHPVRlBj8qNe5L8ISQOzjghYQm/dZ7VaM2KHYwMW5adjQjrzTZCchFnNCNhkwtnOBa9HTMJCI8w==",
-        "dependencies": {
-          "@stablelib/binary": "@stablelib/binary@1.0.1",
-          "@stablelib/wipe": "@stablelib/wipe@1.0.1"
-        }
-      },
-      "@stablelib/sha512@1.0.1": {
-        "integrity": "sha512-13gl/iawHV9zvDKciLo1fQ8Bgn2Pvf7OV6amaRVKiq3pjQ3UmEpXxWiAfV8tYjUpeZroBxtyrwtdooQT/i3hzw==",
-        "dependencies": {
-          "@stablelib/binary": "@stablelib/binary@1.0.1",
-          "@stablelib/hash": "@stablelib/hash@1.0.1",
-          "@stablelib/wipe": "@stablelib/wipe@1.0.1"
-        }
-      },
-      "@stablelib/wipe@1.0.1": {
-        "integrity": "sha512-WfqfX/eXGiAd3RJe4VU2snh/ZPwtSjLG4ynQ/vYzvghTh7dHFcI1wl+nrkWG6lGhukOxOsUHfv8dUXr58D0ayg==",
-        "dependencies": {}
-      },
-      "@stablelib/xchacha20@1.0.1": {
-        "integrity": "sha512-1YkiZnFF4veUwBVhDnDYwo6EHeKzQK4FnLiO7ezCl/zu64uG0bCCAUROJaBkaLH+5BEsO3W7BTXTguMbSLlWSw==",
-        "dependencies": {
-          "@stablelib/binary": "@stablelib/binary@1.0.1",
-          "@stablelib/chacha": "@stablelib/chacha@1.0.1",
-          "@stablelib/wipe": "@stablelib/wipe@1.0.1"
-        }
       }
     }
   },
   "remote": {},
   "workspace": {
     "dependencies": [
-      "jsr:@std/expect@^0.224.3",
-      "npm:@stablelib/blake2b@^1.0.1",
-      "npm:@stablelib/ed25519@^1.0.3",
-      "npm:@stablelib/xchacha20@^1.0.1"
+      "jsr:@std/crypto@^1.0.1",
+      "jsr:@std/expect@^0.224.5",
+      "npm:@noble/ciphers@0.5.3",
+      "npm:@noble/curves@1.4.2",
+      "npm:@noble/hashes@1.4.0"
     ]
   }
 }

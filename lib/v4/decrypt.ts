@@ -16,9 +16,9 @@ import {
 
 import { PAE } from "../utils/pae.ts";
 import { PasetoDecryptionFailed } from "../utils/errors.ts";
-import { hash } from "@stablelib/blake2b";
+import { blake2b } from "@noble/hashes/blake2b";
 import { returnPossibleJson } from "../utils/json.ts";
-import { streamXOR } from "@stablelib/xchacha20";
+import { xchacha20 } from "@noble/ciphers/chacha";
 
 /**
  * Decrypts a PASETO v4.local token and returns the message.
@@ -92,7 +92,7 @@ export function decrypt<
   );
 
   // Calculate tag2 from pre-auth and auth key
-  const tag2 = hash(preAuth, 32, { key: authKey });
+  const tag2 = blake2b(preAuth, { key: authKey, dkLen: 32 });
 
   // Check that tag and tag2 match
   if (!constantTimeEqual(tag, tag2)) {
@@ -102,7 +102,7 @@ export function decrypt<
   }
 
   // Decrypt ciphertext and return plaintext
-  const plaintext = streamXOR(
+  const plaintext = xchacha20(
     encryptionKey,
     counterNonce,
     ciphertext,

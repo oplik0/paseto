@@ -18,7 +18,9 @@ If you are unfamiliar with PASETO, please see Okta's blog post
 
 The only dependencies are the Blake2b, Ed25519 and XChaCha20 cryptographic
 primitives, which do not yet exist in the standard Web Crypto API, provided by
-[stablelib](https://www.stablelib.com). If you wish to use other primitives,
+[noble crypto](https://paulmillr.com/noble/), a high-security, easily auditable
+(with blake2b and ed25519 implementations audited by Trail of Bits in 2022 and
+2023 respectively) cryptographic library. If you wish to use other primitives,
 feel free to fork the project and implement them; it should be straightforward.
 
 ## Supported PASETO versions
