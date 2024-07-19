@@ -1,3 +1,8 @@
+/**
+ * @module utilities
+ *
+ * This module exports all the utility functions used in the library.
+ */
 export * from "./lib/utils/base64url.ts";
 export * from "./lib/utils/errors.ts";
 export * from "./lib/utils/json.ts";
