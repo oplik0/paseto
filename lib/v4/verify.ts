@@ -14,7 +14,7 @@ import {
 
 import { PAE } from "../utils/pae.ts";
 import { PasetoSignatureInvalid } from "../utils/errors.ts";
-import { verify as ed25519Verify } from "../utils/ed25519.ts";
+import { ed25519Verify as ed25519Verify } from "../utils/ed25519.ts";
 import { returnPossibleJson } from "../utils/json.ts";
 import { uint8ArrayToString } from "../utils/uint8array.ts";
 import { validateToken } from "../utils/validate.ts";

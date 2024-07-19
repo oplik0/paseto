@@ -15,7 +15,7 @@ import {
 
 import { PAE } from "../utils/pae.ts";
 import { base64UrlEncode } from "../utils/base64url.ts";
-import { sign as ed25519Sign } from "../utils/ed25519.ts";
+import { ed25519Sign as ed25519Sign } from "../utils/ed25519.ts";
 
 const EMPTY_BUFFER = new Uint8Array(0);
 
@@ -92,7 +92,7 @@ export function sign(
   );
 
   // Sign m2 using Ed25519 secret key
-  const sig = ed25519Sign(m2, key.slice(0, 32));
+  const sig = ed25519Sign(m2, key);
 
   let result = "";
 
