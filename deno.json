@@ -1,6 +1,6 @@
 {
   "name": "@opliko/paseto",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "PASETO v4 (encrypt, decrypt, sign & verify)",
   "exports": {
     ".": "./mod.ts",
